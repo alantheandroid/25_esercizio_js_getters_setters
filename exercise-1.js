@@ -1,18 +1,21 @@
-const john = {
-  firstName: "John",
-  lastName: "Doe",
+const person = {
+  firstName: "Name",
+  lastName: "Surname",
   get fullName () {
-    return `${john.firstName} ${john.lastName}`
+    return `${this.firstName} ${this.lastName}`
+  },
+  set fullName(value) {
+    const parts = value.split(" ");
+    this.firstName = parts[0];
+    this.lastName = parts[1];
   }
 }
 
-const simon = {
-  firstName: "Simon",
-  lastName: "Collins",
-  get fullName () {
-    return `${simon.firstName} ${simon.lastName}`
-  }
-}
+const john = Object.create(person);
+const simon = Object.create(person);
+
+john.fullName = "John Doe";
+simon.fullName = "Simon Collins";
 
 console.log(john.fullName); // John Doe
 console.log(simon.fullName); // Simon Collins
